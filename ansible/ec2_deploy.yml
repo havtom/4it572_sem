@@ -13,9 +13,12 @@
         assign_public_ip: yes
         wait: yes
         group: eshop
+        instance_tags:
+          Name: eshop
         aws_access_key: "{{aws_access_key_id}}"
         aws_secret_key: "{{aws_secret_access_key}}"
         security_token: "{{aws_session_token}}"
+        count: 1
       register: ec2
 
     - name: Add instance host to group
