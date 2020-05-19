@@ -21,7 +21,7 @@ jobs:
           at: .
       - run: pip3 install ansible
       - run: pip3 install boto boto3
-      - run: echo ${PEM_FILE} > ansible.pem
+      - run: echo ${PEM_FILE} | tr , '\n' > ansible.pem
       - run: chmod 400 ansible.pem
       - run: echo ${VAULT_PASS} > .vault_pass.txt
       - run: export ANSIBLE_HOST_KEY_CHECKING=False
