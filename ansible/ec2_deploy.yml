@@ -12,7 +12,6 @@
         vpc_subnet_id: subnet-3afd7d77
         assign_public_ip: yes
         wait: yes
-        exact_count: 1 # https://docs.ansible.com/ansible/latest/modules/ec2_module.html
         group: eshop
         aws_access_key: "{{aws_access_key_id}}"
         aws_secret_key: "{{aws_secret_access_key}}"
