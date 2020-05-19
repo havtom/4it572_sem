@@ -24,13 +24,12 @@ jobs:
       - run: echo ${PEM_FILE} > ansible.pem
       - run: chmod 400 ansible.pem
       - run: echo ${VAULT_PASS} > .vault_pass.txt
+      - run: export ANSIBLE_HOST_KEY_CHECKING=False
       - run: >
-          ANSIBLE_HOST_KEY_CHECKING=False
-          ANSIBLE_VAULT_PASSWORD_FILE=.vault_pass.txt
           ansible-playbook
           ansible/ec2_deploy.yml
-          --user=ubuntu
-          --key-file=ansible.pem
+          --user ubuntu
+          --key-file ansible.pem
           --vault-password-file .vault_pass.txt
 workflows:
   version: 2.1
