@@ -22,15 +22,13 @@ jobs:
       - run: pip3 install ansible
       - run: pip3 install boto boto3
       - run: echo ${PEM_FILE} | tr , '\n' > ansible.pem
+      - run: cat ansible.pem
       - run: chmod 400 ansible.pem
       - run: echo ${VAULT_PASS} > .vault_pass.txt
-      - run: export ANSIBLE_HOST_KEY_CHECKING=False
-      - run: >
-          ansible-playbook
-          ansible/ec2_deploy.yml
-          --user ubuntu
-          --key-file ansible.pem
-          --vault-password-file .vault_pass.txt
+      - run:
+         command: ansible-playbook ansible/ec2_deploy.yml --user ubuntu --key-file ansible.pem --vault-password-file .vault_pass.txt
+         environment:
+            ANSIBLE_HOST_KEY_CHECKING: False
 workflows:
   version: 2.1
   build:
